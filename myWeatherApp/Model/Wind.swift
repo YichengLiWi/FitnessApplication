@@ -11,5 +11,5 @@ import Foundation
 struct Wind: Decodable{
     var speed: Double
     var deg: Double
-    var gust: Double
+    var gust: Double?
 }

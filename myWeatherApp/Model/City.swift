@@ -10,6 +10,7 @@ import Foundation
 
 struct City 
 {
-    
-    
+    var openWeather: OpenWeatherMap
+    //forecastWeather
+    //var forecastWeather: ForecastOpenWeatherMap
 }

@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 struct OpenWeatherMap: Decodable {
     var coord: Coord
     var sys: Sys
@@ -22,6 +20,5 @@ struct OpenWeatherMap: Decodable {
     var id: Int
     var name: String
     var cod: Int
-    
-    
+ 
 }

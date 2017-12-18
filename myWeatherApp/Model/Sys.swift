@@ -9,7 +9,7 @@
 import Foundation
 
 struct Sys: Decodable{
-    var country: String
+    var country: String?
     var sunrise: Double
     var sunset: Double
 }
