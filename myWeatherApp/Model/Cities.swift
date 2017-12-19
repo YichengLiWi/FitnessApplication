@@ -19,17 +19,17 @@ class Cities {
         //find current city
         //testing purpose
         cities = []
-        var coordinates = [Coord]()
-        let citiesTest = [(40.7, -74.0), (34.05, -118.24), (41.87, -87.6), (29.76, -95.36), (32.75, -117.16)]
-        for city in citiesTest {
-            let temp = Coord(lat: city.0, lon: city.1)
-            coordinates.append(temp)
-        }
-        for coordinate in coordinates {
-            parseWeatherAPI(coordinate: coordinate)
-            parseForeCastWeatherAPI(coordinate: coordinate)
-            
-        }
+//        var coordinates = [Coord]()
+//        let citiesTest = [(40.7, -74.0), (34.05, -118.24), (41.87, -87.6), (29.76, -95.36), (32.75, -117.16)]
+//        for city in citiesTest {
+//            let temp = Coord(lat: city.0, lon: city.1)
+//            coordinates.append(temp)
+//        }
+//        for coordinate in coordinates {
+//            parseWeatherAPI(coordinate: coordinate)
+//            parseForeCastWeatherAPI(coordinate: coordinate)
+//            
+//        }
         
     }
     
