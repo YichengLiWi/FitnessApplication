@@ -11,11 +11,13 @@ import Foundation
 struct OpenWeatherMap: Decodable {
     var coord: Coord
     var sys: Sys
+    var base: String?
     var weather: [Weather]
     var main: Main
     var wind: Wind
-    //var rain: Rain
-    var clouds:Cloud
+    var rain: Rain?
+    var clouds:Cloud?
+    var snow: Snow?
     var dt: Int
     var id: Int
     var name: String
