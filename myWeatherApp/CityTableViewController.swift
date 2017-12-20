@@ -296,27 +296,25 @@ extension CityTableViewController: GMSAutocompleteViewControllerDelegate {
                 break
             }
         }
-        let newIndexPath = IndexPath (row: cities.count, section: 0)
-        var city : CityList?
         
-        if isDuplicate == false && cities.count > 0{
-            
-            let degree = cities[0].temp
-            city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude, temp: degree, current: 0)
-            
-        }else{
-
-            city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude, temp: 0, current: 0)
-            
+        if isDuplicate == false{
+            let newIndexPath = IndexPath (row: cities.count, section: 0)
+            var city : CityList?
+            var degree: Int?
+            if cities.count > 0 {
+                degree = cities[0].temp
+            }else{
+                degree = 0
+            }
+            city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude, temp: degree!, current: 0)
+            cities.append(city!)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            saveCities()
         }
         
-        cities.append(city!)
-        tableView.insertRows(at: [newIndexPath], with: .automatic)
-        
-        saveCities()
-        
-        
         dismiss(animated: true, completion: nil)
+        
+    
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
