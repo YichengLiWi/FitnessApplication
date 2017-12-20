@@ -37,10 +37,11 @@ class CityTableViewController: UITableViewController{
                     }
                     
                     let firstCity = cities[0]
+                    firstCity.current = 0
                     cities[0] = city
                     cities.append(firstCity)
                     
-            }
+                }
             }else{
                 cities.append(city)
             }
@@ -103,15 +104,15 @@ class CityTableViewController: UITableViewController{
     //MARK: private methods
     
     private func loadSampleCities(){
-        guard let city1 = CityList(name: "San Jose", lat: 1, lon: 1, temp: 0)else {
+        guard let city1 = CityList(name: "San Jose", lat: 1, lon: 1, temp: 0, current: 0)else {
             fatalError("Unable to instantiate city1")
         }
         
-        guard let city2 = CityList(name: "Fremont", lat: 1, lon: 1, temp: 0)else {
+        guard let city2 = CityList(name: "Fremont", lat: 1, lon: 1, temp: 0, current: 0)else {
             fatalError("Unable to instantiate city2")
         }
         
-        guard let city3 = CityList(name: "Cupertino", lat: 1, lon: 1, temp: 0)else {
+        guard let city3 = CityList(name: "Cupertino", lat: 1, lon: 1, temp: 0, current: 0)else {
             fatalError("Unable to instantiate city3")
         }
         
@@ -198,7 +199,7 @@ class CityTableViewController: UITableViewController{
             cell.nameLabel.text = city.name
             cell.dateLabel.text = cityInfo.currentDate()
             cell.degreeLabel.text = "\(temp)" + degree
-            if cities[0].name == city.name{
+            if city.current == 1{
                 cell.currentLabel.text = "current city"
             }else{
                 cell.currentLabel.text = ""
@@ -308,11 +309,11 @@ extension CityTableViewController: GMSAutocompleteViewControllerDelegate {
         if isDuplicate == false && cities.count > 0{
             
             let degree = cities[0].temp
-            city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude, temp: degree)
+            city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude, temp: degree, current: 0)
             
         }else{
 
-            city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude, temp: 0)
+            city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude, temp: 0, current: 0)
             
         }
         
