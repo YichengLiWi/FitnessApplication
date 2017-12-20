@@ -200,6 +200,8 @@ class CityTableViewController: UITableViewController{
             cell.degreeLabel.text = "\(temp)" + degree
             if cities[0].name == city.name{
                 cell.currentLabel.text = "current city"
+            }else{
+                cell.currentLabel.text = ""
             }
 
         }
