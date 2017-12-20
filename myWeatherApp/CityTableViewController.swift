@@ -10,7 +10,7 @@ import UIKit
 import os.log
 import GooglePlaces
 
-class CityTableViewController: UITableViewController {
+class CityTableViewController: UITableViewController{
     
     var cities = [CityList]()
     var settingClicked = false;
@@ -264,7 +264,9 @@ class CityTableViewController: UITableViewController {
             }
             
             let selectedCity = cities[indexPath.row]
-//            let myLatLon = storyboard?.in
+            let string = "\(selectedCity.lat),\(selectedCity.lon)"
+            cityDetailController.stringPassed = string;
+
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")

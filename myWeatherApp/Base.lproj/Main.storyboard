@@ -126,7 +126,7 @@
         <!--City_Detail-->
         <scene sceneID="Tsp-6q-VzJ">
             <objects>
-                <viewController id="Ab0-cP-bx6" customClass="CityDetailController" customModule="myWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShowDetail" id="Ab0-cP-bx6" customClass="CityDetailController" customModule="myWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ygA-6J-Ueh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -194,6 +194,9 @@
                         <viewLayoutGuide key="safeArea" id="Trb-zb-QMv"/>
                     </view>
                     <navigationItem key="navigationItem" title="City_Detail" id="3rb-ct-gn9"/>
+                    <connections>
+                        <outlet property="firstLabel" destination="dBK-7P-JPC" id="ZGX-Jx-twu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xr2-of-ACU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
