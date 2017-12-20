@@ -180,6 +180,9 @@ class CityTableViewController: UITableViewController {
         cell.nameLabel.text = city.name
         cell.dateLabel.text = cityInfo.currentDate()
         cell.degreeLabel.text = text + degree
+        if cities[0].name == city.name{
+            cell.currentLabel.text = "current city"
+        }
         
         
         

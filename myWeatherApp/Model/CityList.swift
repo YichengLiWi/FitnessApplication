@@ -19,6 +19,7 @@ class CityList: NSObject, NSCoding{
     var lat: Double
     var lon: Double
     var temp: Int
+
     
     init?(name: String, lat: Double, lon: Double, temp: Int){
         if name.isEmpty {
