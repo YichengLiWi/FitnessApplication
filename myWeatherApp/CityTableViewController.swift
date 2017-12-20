@@ -13,6 +13,7 @@ import GooglePlaces
 class CityTableViewController: UITableViewController {
     
     var cities = [CityList]()
+    var settingClicked = false;
     //MARK: Action
     @IBAction func unwindToCityList(sender: UIStoryboardSegue){
         if let sourceViewController = sender.source as? CityViewController, let city = sourceViewController.city{
@@ -44,6 +45,7 @@ class CityTableViewController: UITableViewController {
     
     @IBAction func switchTemp(_ sender: UIBarButtonItem) {
         var addUp: Int = -1;
+        settingClicked = true
         
         if cities[0].temp == 0 {
             addUp = 1
@@ -54,6 +56,7 @@ class CityTableViewController: UITableViewController {
         }
         
         tableView.reloadData()
+        settingClicked = false
         saveCities()
     }
     
@@ -164,24 +167,37 @@ class CityTableViewController: UITableViewController {
             else{
                 fatalError("The dequeued cell is not an instance of CityTableViewCell. ")
         }
-        
         let city = cities[indexPath.row]
-        let newCoord = Coord(lat: city.lat, lon: city.lon)
-        let cityInfo = City(coord: newCoord)
-        cityInfo.getWeather()
-        // Configure the cell...
-        var temp = cityInfo.currentTemp()
         var degree = "°C"
-        if(city.temp == 1){
-            temp = Int(Double(temp) * 1.8 + 32.0)
-            degree = "°F"
-        }
-        let text = "\(temp)"
-        cell.nameLabel.text = city.name
-        cell.dateLabel.text = cityInfo.currentDate()
-        cell.degreeLabel.text = text + degree
-        if cities[0].name == city.name{
-            cell.currentLabel.text = "current city"
+
+        
+        if settingClicked == false {
+        
+            let newCoord = Coord(lat: city.lat, lon: city.lon)
+            let cityInfo = City(coord: newCoord)
+            cityInfo.getWeather()
+            // Configure the cell...
+            var temp = cityInfo.currentTemp()
+            if(city.temp == 1){
+                temp = Int(Double(temp) * 1.8 + 32.0)
+                degree = "°F"
+            }
+            let text = "\(temp)"
+            cell.nameLabel.text = city.name
+            cell.dateLabel.text = cityInfo.currentDate()
+            cell.degreeLabel.text = text + degree
+            if cities[0].name == city.name{
+                cell.currentLabel.text = "current city"
+            }
+        }else{
+            var temp = Int(cell.degreeLabel.text!)
+            if(city.temp == 1){
+                temp = Int(Double(temp!) * 1.8 + 32.0)
+                degree = "°F"
+            }
+            let text = "\(temp!)"
+            cell.degreeLabel.text = text + degree
+
         }
         
         
