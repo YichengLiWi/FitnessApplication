@@ -13,10 +13,14 @@ import GooglePlaces
 class CityTableViewController: UITableViewController {
     
     var cities = [CityList]()
+    var settingClicked = false;
     //MARK: Action
     @IBAction func unwindToCityList(sender: UIStoryboardSegue){
         if let sourceViewController = sender.source as? CityViewController, let city = sourceViewController.city{
             
+            if cities[0].temp == 1 {
+                city.temp = 1;
+            }
             
             if cities[0].name.uppercased() != city.name.uppercased(){
                 //                let newIndexPath = IndexPath (row: 1, section: 0)
@@ -39,6 +43,24 @@ class CityTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func switchTemp(_ sender: UIBarButtonItem) {
+        var addUp: Int = -1;
+        settingClicked = true
+        
+        if cities[0].temp == 0 {
+            addUp = 1
+        }
+        
+        for c in cities{
+            c.temp += addUp
+        }
+        
+        tableView.reloadData()
+        settingClicked = false
+        saveCities()
+    }
+    
+
     
     
     @IBAction func autocompleteClicked(_ sender: UIBarButtonItem) {
@@ -74,15 +96,15 @@ class CityTableViewController: UITableViewController {
     //MARK: private methods
     
     private func loadSampleCities(){
-        guard let city1 = CityList(name: "San Jose", lat: 1, lon: 1)else {
+        guard let city1 = CityList(name: "San Jose", lat: 1, lon: 1, temp: 0)else {
             fatalError("Unable to instantiate city1")
         }
         
-        guard let city2 = CityList(name: "Fremont", lat: 1, lon: 1)else {
+        guard let city2 = CityList(name: "Fremont", lat: 1, lon: 1, temp: 0)else {
             fatalError("Unable to instantiate city2")
         }
         
-        guard let city3 = CityList(name: "Cupertino", lat: 1, lon: 1)else {
+        guard let city3 = CityList(name: "Cupertino", lat: 1, lon: 1, temp: 0)else {
             fatalError("Unable to instantiate city3")
         }
         
@@ -145,14 +167,35 @@ class CityTableViewController: UITableViewController {
             else{
                 fatalError("The dequeued cell is not an instance of CityTableViewCell. ")
         }
-        
         let city = cities[indexPath.row]
-        let newCoord = Coord(lat: city.lat, lon: city.lon)
-        let cityInfo = City(coord: newCoord)
-        cityInfo.getWeather()
-        // Configure the cell...
-        let text = "\(cityInfo.currentTemp())"
-        cell.nameLabel.text = city.name + "   " + cityInfo.currentDate() + "   " + text + "°C"
+        var degree = "°C"
+
+        
+        if settingClicked == true {
+            var temp = Int(cell.degreeLabel.text!)
+            if(city.temp == 1){
+                temp = Int(Double(temp!) * 1.8 + 32.0)
+                degree = "°F"
+            }
+            cell.degreeLabel.text = "\(temp!)" + degree
+        }else{
+            let newCoord = Coord(lat: city.lat, lon: city.lon)
+            let cityInfo = City(coord: newCoord)
+            cityInfo.getWeather()
+            // Configure the cell...
+            var temp = cityInfo.currentTemp()
+            if(city.temp == 1){
+                temp = Int(Double(temp) * 1.8 + 32.0)
+                degree = "°F"
+            }
+            cell.nameLabel.text = city.name
+            cell.dateLabel.text = cityInfo.currentDate()
+            cell.degreeLabel.text = "\(temp)" + degree
+            if cities[0].name == city.name{
+                cell.currentLabel.text = "current city"
+            }
+
+        }
         
         
         
@@ -209,6 +252,7 @@ extension CityTableViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        let degree = cities[0].temp
         var isDuplicate: Bool = false
         
         for c in cities {
@@ -222,7 +266,7 @@ extension CityTableViewController: GMSAutocompleteViewControllerDelegate {
             
             let newIndexPath = IndexPath (row: cities.count, section: 0)
             var city : CityList?
-            city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude)
+            city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude, temp: degree)
             
             cities.append(city!)
             tableView.insertRows(at: [newIndexPath], with: .automatic)

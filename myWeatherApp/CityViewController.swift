@@ -41,7 +41,8 @@ class CityViewController: UIViewController, UITextFieldDelegate {
         
         let name = cityNameTextField.text ?? ""
         
-        city = CityList(name: name, lat: lat!, lon: lon!)
+        
+        city = CityList(name: name, lat: lat!, lon: lon!, temp: 0)
         
     }
     
@@ -62,8 +63,8 @@ class CityViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        updateSaveButtonState()
-        navigationItem.title = textField.text
+//        updateSaveButtonState()
+//        navigationItem.title = textField.text
     }
     
     override func viewDidLoad() {
@@ -100,6 +101,7 @@ extension CityViewController: GMSAutocompleteViewControllerDelegate {
         cityNameTextField.text = place.name
         lat = place.coordinate.latitude
         lon = place.coordinate.longitude
+        updateSaveButtonState()
         dismiss(animated: true, completion: nil)
     }
     

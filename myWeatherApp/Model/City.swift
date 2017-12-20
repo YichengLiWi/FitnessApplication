@@ -71,8 +71,7 @@ class City
         
         URLSession.shared.dataTask(with: url) { (data, response, err) in
             //perhaps check err
-            //also perhaps check response status 200 OK
-            
+            //also perhaps check response status 200 OK            
             guard let data = data else {return}
             
             print("data got")
@@ -82,7 +81,7 @@ class City
             
             }.resume()
         
-         sleep(3)
+         sleep(1)
     }
     
     // use urlSession get ForecastOpenWeatherMap url's content
@@ -106,7 +105,7 @@ class City
             
             }.resume()
         
-        sleep(3)
+        sleep(1)
 
     }
     

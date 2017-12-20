@@ -13,6 +13,9 @@ class CityTableViewCell: UITableViewCell {
     //MARK: Properties
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var degreeLabel: UILabel!
+    @IBOutlet weak var currentLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
