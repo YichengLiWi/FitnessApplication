@@ -263,9 +263,10 @@ class CityTableViewController: UITableViewController{
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            let selectedCity = cities[indexPath.row]
-            let string = "\(selectedCity.lat),\(selectedCity.lon)"
-            cityDetailController.stringPassed = string;
+            let city = cities[indexPath.row]
+            cityDetailController.namePassed = city.name
+            cityDetailController.doubleLatPassed = city.lat
+            cityDetailController.doubleLonPassed = city.lon
 
             
         default:
