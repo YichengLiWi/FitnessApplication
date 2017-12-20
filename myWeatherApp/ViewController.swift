@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        var cities = Cities()
+//        var cities = Cities()
         
         
     }

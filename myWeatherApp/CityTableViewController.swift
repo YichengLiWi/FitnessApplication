@@ -147,9 +147,12 @@ class CityTableViewController: UITableViewController {
         }
         
         let city = cities[indexPath.row]
-        var cityInfo = Cities()
+        let newCoord = Coord(lat: city.lat, lon: city.lon)
+        let cityInfo = City(coord: newCoord)
+        cityInfo.getWeather()
         // Configure the cell...
-        cell.nameLabel.text = city.name
+        let text = "\(cityInfo.currentTemp())"
+        cell.nameLabel.text = city.name + "   " + cityInfo.currentDate() + "   " + text + "°C"
         
         
         
