@@ -41,7 +41,8 @@ class CityViewController: UIViewController, UITextFieldDelegate {
         
         let name = cityNameTextField.text ?? ""
         
-        city = CityList(name: name, lat: lat!, lon: lon!)
+        
+        city = CityList(name: name, lat: lat!, lon: lon!, temp: 0)
         
     }
     

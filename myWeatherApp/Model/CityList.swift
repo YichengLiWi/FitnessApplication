@@ -18,8 +18,9 @@ class CityList: NSObject, NSCoding{
     var name: String
     var lat: Double
     var lon: Double
+    var temp: Int
     
-    init?(name: String, lat: Double, lon: Double){
+    init?(name: String, lat: Double, lon: Double, temp: Int){
         if name.isEmpty {
             return nil
         }
@@ -27,6 +28,7 @@ class CityList: NSObject, NSCoding{
         self.name = name
         self.lat = lat
         self.lon = lon
+        self.temp = temp
         
     }
     
@@ -35,6 +37,7 @@ class CityList: NSObject, NSCoding{
         static let name = "name"
         static let lat = "lat"
         static let lon = "lon"
+        static let temp = "temp"
     }
     
     required convenience init?(coder aDecoder: NSCoder){
@@ -44,8 +47,10 @@ class CityList: NSObject, NSCoding{
         }
         let lat = aDecoder.decodeDouble(forKey: PropertyKey.lat)
         let lon = aDecoder.decodeDouble(forKey: PropertyKey.lon)
+        let temp = aDecoder.decodeInteger(forKey: PropertyKey.temp)
         
-        self.init(name: name, lat: lat, lon: lon)
+        
+        self.init(name: name, lat: lat, lon: lon, temp: temp)
     }
     
     //MARK: NSCoding
@@ -54,6 +59,7 @@ class CityList: NSObject, NSCoding{
         aCoder.encode(name, forKey: PropertyKey.name)
         aCoder.encode(lat, forKey: PropertyKey.lat)
         aCoder.encode(lon, forKey: PropertyKey.lon)
+        aCoder.encode(temp, forKey: PropertyKey.temp)
     }
     
     

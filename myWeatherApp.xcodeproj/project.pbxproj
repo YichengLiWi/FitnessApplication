@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7EB31E928201DE363AD408F8 /* libPods-myWeatherApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BBAB891821B3DDA378B103 /* libPods-myWeatherApp.a */; };
 		B404B0A01FDE3DE500B808D4 /* Rain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B404B09F1FDE3DE500B808D4 /* Rain.swift */; };
 		B40A5C0F1FDE3AC300B277EE /* Coord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A5C0E1FDE3AC300B277EE /* Coord.swift */; };
 		B41050351FDE2A8000BD0437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41050341FDE2A8000BD0437 /* AppDelegate.swift */; };
@@ -56,7 +55,6 @@
 		B4F699E61FE8880D00D8ED82 /* ForecastCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCity.swift; sourceTree = "<group>"; };
 		B4F699E81FE8881F00D8ED82 /* ForecastWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeather.swift; sourceTree = "<group>"; };
 		B4F699EA1FE88A1A00D8ED82 /* Snow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snow.swift; sourceTree = "<group>"; };
-		C4BBAB891821B3DDA378B103 /* libPods-myWeatherApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myWeatherApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA8E67E10438299350B8030 /* Pods-myWeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myWeatherApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-myWeatherApp/Pods-myWeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		E93F6B421FE9CF71007AD618 /* CityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewController.swift; sourceTree = "<group>"; };
 		E93F6B441FE9CFD8007AD618 /* CityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityList.swift; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EB31E928201DE363AD408F8 /* libPods-myWeatherApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +88,6 @@
 				B41050331FDE2A8000BD0437 /* myWeatherApp */,
 				B41050321FDE2A8000BD0437 /* Products */,
 				92B45CBCA89BD809A17DE7E5 /* Pods */,
-				F56AE09B7848D5BE479378FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,14 +136,6 @@
 				B4F699EA1FE88A1A00D8ED82 /* Snow.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		F56AE09B7848D5BE479378FB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C4BBAB891821B3DDA378B103 /* libPods-myWeatherApp.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
