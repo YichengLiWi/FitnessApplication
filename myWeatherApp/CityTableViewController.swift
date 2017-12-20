@@ -171,8 +171,14 @@ class CityTableViewController: UITableViewController {
         var degree = "°C"
 
         
-        if settingClicked == false {
-        
+        if settingClicked == true {
+            var temp = Int(cell.degreeLabel.text!)
+            if(city.temp == 1){
+                temp = Int(Double(temp!) * 1.8 + 32.0)
+                degree = "°F"
+            }
+            cell.degreeLabel.text = "\(temp!)" + degree
+        }else{
             let newCoord = Coord(lat: city.lat, lon: city.lon)
             let cityInfo = City(coord: newCoord)
             cityInfo.getWeather()
@@ -182,21 +188,12 @@ class CityTableViewController: UITableViewController {
                 temp = Int(Double(temp) * 1.8 + 32.0)
                 degree = "°F"
             }
-            let text = "\(temp)"
             cell.nameLabel.text = city.name
             cell.dateLabel.text = cityInfo.currentDate()
-            cell.degreeLabel.text = text + degree
+            cell.degreeLabel.text = "\(temp)" + degree
             if cities[0].name == city.name{
                 cell.currentLabel.text = "current city"
             }
-        }else{
-            var temp = Int(cell.degreeLabel.text!)
-            if(city.temp == 1){
-                temp = Int(Double(temp!) * 1.8 + 32.0)
-                degree = "°F"
-            }
-            let text = "\(temp!)"
-            cell.degreeLabel.text = text + degree
 
         }
         

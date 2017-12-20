@@ -12,7 +12,6 @@
 		B41050351FDE2A8000BD0437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41050341FDE2A8000BD0437 /* AppDelegate.swift */; };
 		B41050371FDE2A8000BD0437 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41050361FDE2A8000BD0437 /* ViewController.swift */; };
 		B410503A1FDE2A8000BD0437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41050381FDE2A8000BD0437 /* Main.storyboard */; };
-		B410503C1FDE2A8000BD0437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B410503B1FDE2A8000BD0437 /* Assets.xcassets */; };
 		B410503F1FDE2A8000BD0437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B410503D1FDE2A8000BD0437 /* LaunchScreen.storyboard */; };
 		B420439E1FDE328F00AC9E06 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420439D1FDE328F00AC9E06 /* Weather.swift */; };
 		B42EFBF21FE7BCD200206F89 /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EFBF11FE7BCD100206F89 /* Cities.swift */; };
@@ -30,6 +29,7 @@
 		E93F6B451FE9CFD8007AD618 /* CityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F6B441FE9CFD8007AD618 /* CityList.swift */; };
 		E93F6B491FE9D078007AD618 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F6B481FE9D078007AD618 /* CityTableViewCell.swift */; };
 		E93F6B4B1FE9D0BB007AD618 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F6B4A1FE9D0BB007AD618 /* CityViewController.swift */; };
+		E93F6B531FEA2AF3007AD618 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E93F6B521FEA2AF3007AD618 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,6 @@
 		B41050341FDE2A8000BD0437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B41050361FDE2A8000BD0437 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B41050391FDE2A8000BD0437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B410503B1FDE2A8000BD0437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B410503E1FDE2A8000BD0437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B41050401FDE2A8000BD0437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B420439D1FDE328F00AC9E06 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		E93F6B441FE9CFD8007AD618 /* CityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityList.swift; sourceTree = "<group>"; };
 		E93F6B481FE9D078007AD618 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		E93F6B4A1FE9D0BB007AD618 /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
+		E93F6B521FEA2AF3007AD618 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +109,7 @@
 				B4BAFFF61FDE39E3002B51CF /* Model */,
 				B41050361FDE2A8000BD0437 /* ViewController.swift */,
 				B41050381FDE2A8000BD0437 /* Main.storyboard */,
-				B410503B1FDE2A8000BD0437 /* Assets.xcassets */,
+				E93F6B521FEA2AF3007AD618 /* Assets.xcassets */,
 				B410503D1FDE2A8000BD0437 /* LaunchScreen.storyboard */,
 				B41050401FDE2A8000BD0437 /* Info.plist */,
 			);
@@ -201,7 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B410503F1FDE2A8000BD0437 /* LaunchScreen.storyboard in Resources */,
-				B410503C1FDE2A8000BD0437 /* Assets.xcassets in Resources */,
+				E93F6B531FEA2AF3007AD618 /* Assets.xcassets in Resources */,
 				B410503A1FDE2A8000BD0437 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
