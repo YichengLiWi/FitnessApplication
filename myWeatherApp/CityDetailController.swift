@@ -19,6 +19,7 @@ class CityDetailController: UIViewController, UITableViewDataSource, UITableView
     var unitPassed = false
     var currentTempMax: Int = -100
     var currentTempMin: Int = 200
+//    var cOrF: Int = 0
     @IBOutlet weak var dayOneUILabel: UILabel!
     @IBOutlet weak var dayTwoUILabel: UILabel!
     @IBOutlet weak var dayThreeUILabel: UILabel!

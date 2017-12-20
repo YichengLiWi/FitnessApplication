@@ -41,7 +41,10 @@ class CityTableViewController: UITableViewController{
                     cities[0] = city
                     cities.append(firstCity)
                     
+                }else{
+                    cities[0].current = 1
                 }
+                
             }else{
                 cities.append(city)
             }
@@ -52,20 +55,22 @@ class CityTableViewController: UITableViewController{
     }
     
     @IBAction func switchTemp(_ sender: UIBarButtonItem) {
-        var addUp: Int = -1;
-        settingClicked = true
-        
-        if cities[0].temp == 0 {
-            addUp = 1
+        if cities.count > 0 {
+            var addUp: Int = -1;
+            settingClicked = true
+            
+            if cities[0].temp == 0 {
+                addUp = 1
+            }
+            
+            for c in cities{
+                c.temp += addUp
+            }
+            
+            tableView.reloadData()
+            settingClicked = false
+            saveCities()
         }
-        
-        for c in cities{
-            c.temp += addUp
-        }
-        
-        tableView.reloadData()
-        settingClicked = false
-        saveCities()
     }
     
 
@@ -104,19 +109,6 @@ class CityTableViewController: UITableViewController{
     //MARK: private methods
     
     private func loadSampleCities(){
-        guard let city1 = CityList(name: "San Jose", lat: 1, lon: 1, temp: 0, current: 0)else {
-            fatalError("Unable to instantiate city1")
-        }
-        
-        guard let city2 = CityList(name: "Fremont", lat: 1, lon: 1, temp: 0, current: 0)else {
-            fatalError("Unable to instantiate city2")
-        }
-        
-        guard let city3 = CityList(name: "Cupertino", lat: 1, lon: 1, temp: 0, current: 0)else {
-            fatalError("Unable to instantiate city3")
-        }
-        
-        cities += [city1, city2, city3]
         
     }
     
@@ -279,6 +271,7 @@ class CityTableViewController: UITableViewController{
             cityDetailController.namePassed = city.name
             cityDetailController.doubleLatPassed = city.lat
             cityDetailController.doubleLonPassed = city.lon
+//            cityDetailController.cOrF = city.temp
             
             
         default:
