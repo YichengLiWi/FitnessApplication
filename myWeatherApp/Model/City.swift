@@ -37,21 +37,173 @@ class City
     }
     
     func currentDate() -> String {
-        let dt = openWeather!.dt
-        let date = NSDate(timeIntervalSince1970: Double(dt))
+        if let dt = openWeather?.dt {
+            let date = NSDate(timeIntervalSince1970: Double(dt))
+            
+            let dayTimePeriodFormatter = DateFormatter()
+            dayTimePeriodFormatter.dateFormat = "MMM dd YYYY hh:mm a"
+            
+            let dateString = dayTimePeriodFormatter.string(from: date as Date)
+
+            return dateString
+        }
+        else {
+            return ""
+        }
+    }
+    
+    func currentTemp() -> Int {
+        if let openWeather = self.openWeather {
+            return Int(openWeather.main.temp.rounded())
+        }else {
+            return 0
+        }
+    }
+    
+    func maxTemp() -> Int {
+        if let openWeather = self.openWeather {
+            return Int(openWeather.main.temp_max.rounded())
+        }else {
+            return 0
+        }
+    }
+    
+    func minTemp() -> Int {
+        if let openWeather = self.openWeather {
+            return Int(openWeather.main.temp_min.rounded())
+        }else {
+            return 0
+        }
+    }
+    
+    
+    // Forecast Get
+    func getTempMin() -> Int{
+        return Int((self.forecastWeather?.list[0].main.temp_min.rounded())!)
+    }
+    
+    func getCurrentForeTemp() -> Int{
+        return Int((self.forecastWeather?.list[0].main.temp.rounded())!)
+    }
+    
+    func getTempMax() -> Int {
+        return Int((self.forecastWeather?.list[0].main.temp_max.rounded())!)
+    }
+    
+    func getCurrentDate() -> String {
+        let dt = self.forecastWeather?.list[0].dt
+        let date = NSDate(timeIntervalSince1970: Double(dt!))
         
         let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "MMM dd YYYY hh:mm a"
         
         let dateString = dayTimePeriodFormatter.string(from: date as Date)
-
+        
         return dateString
     }
     
-    func currentTemp() -> Int {
-        return Int(self.openWeather!.main.temp.rounded())
+    func getDate(index: Int) -> String {
+        //let total = self.forecastWeather?.list.count
+        
+        if let dt = self.forecastWeather?.list[index].dt {
+            let date = NSDate(timeIntervalSince1970: Double(dt))
+            
+            let dayTimePeriodFormatter = DateFormatter()
+            dayTimePeriodFormatter.dateFormat = "MMM dd"
+            
+            let dateString = dayTimePeriodFormatter.string(from: date as Date)
+            return dateString
+        }
+        else {
+            return ""
+        }
     }
     
+    func getHourly() -> [Int] {
+        let today = getToday()
+        var hourlyArray: [Int] = [Int]()
+        var index:Int = 0
+        while (getDate(index: index) == today) {
+            hourlyArray.append(index)
+            index += 1
+        }
+        return hourlyArray
+    
+    }
+    
+    func getDaily() -> [(String, String, Int, Int)] {
+        var current = getToday()
+        var index:Int = 0
+        while ((index < (self.forecastWeather?.list.count)!) && (current == getDate(index:index))) {
+            index += 1
+        }
+        current = getDate(index: index)
+        let total = (self.forecastWeather?.list.count)! - 1
+        var result: [(date_d: String, weather_d: String, maxTemp_d: Int, minTemp_d: Int)] = []
+        var temp:(date_d: String, weather_d: String, maxTemp_d: Int, minTemp_d: Int) = ("", "", -99, 200)
+        
+        for index in index...total {
+            if (getDate(index: index) == current) {
+                temp.date_d = current
+                if getTempMax(index: index) > temp.maxTemp_d {
+                    temp.maxTemp_d = getTempMax(index: index)
+                }
+                if getTempMin(index: index) < temp.minTemp_d {
+                    temp.minTemp_d = getTempMin(index: index)
+                }
+                if getTimeOnly(index:index) == "01:00 PM" {
+                    temp.weather_d = self.forecastWeather!.list[index].weather[0].main
+                }
+            } else {
+                result.append(temp)
+                current = getDate(index: index)
+                temp = (current, "", -99, 200)
+            }
+        }
+        result.append(temp)
+        
+        return result
+    }
+    
+    func getTempMin(index: Int) -> Int{
+        return Int((self.forecastWeather?.list[index].main.temp_min.rounded())!)
+    }
+    
+    func getTempMax(index: Int) -> Int {
+        return Int((self.forecastWeather?.list[index].main.temp_max.rounded())!)
+    }
+    
+    func getToday() -> String {
+        let dt = openWeather!.dt
+        let date = NSDate(timeIntervalSince1970: Double(dt))
+        
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "MMM dd"
+        
+        let dateString = dayTimePeriodFormatter.string(from: date as Date)
+        
+        return dateString
+    }
+    
+    func getHoulyIndex(index: Int) -> (String, String, Int) {
+        let time = getTimeOnly(index: index)
+        let weather_status = self.forecastWeather!.list[index].weather[0].main
+        let temp = Int(self.forecastWeather!.list[index].main.temp.rounded())
+        
+        return(time, weather_status, temp)
+    }
+    
+    func getTimeOnly(index:Int) -> String {
+        let dt = self.forecastWeather?.list[index].dt
+        let date = NSDate(timeIntervalSince1970: Double(dt!))
+        
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "hh:mm a"
+        
+        let dateString = dayTimePeriodFormatter.string(from: date as Date)
+        print(dateString)
+        return dateString
+    }
     func addCity(new_city_coord: Coord) {
         parseWeatherAPI(coordinate: new_city_coord)
         //when can I store the info to the city; should I initialize new var in parseWeatherAPI?

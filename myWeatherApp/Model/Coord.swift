@@ -12,4 +12,9 @@ struct Coord: Decodable
 {
     var lat: Double
     var lon: Double
+    
+    init(lat: Double, lon: Double) {
+        self.lat = lat
+        self.lon = lon
+    }
 }

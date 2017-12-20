@@ -14,31 +14,38 @@ class CityTableViewController: UITableViewController{
     
     var cities = [CityList]()
     var settingClicked = false;
+    var isCels = true
     //MARK: Action
     @IBAction func unwindToCityList(sender: UIStoryboardSegue){
         if let sourceViewController = sender.source as? CityViewController, let city = sourceViewController.city{
             
-            if cities[0].temp == 1 {
-                city.temp = 1;
-            }
+            if cities.count > 0 {
             
-            if cities[0].name.uppercased() != city.name.uppercased(){
-                //                let newIndexPath = IndexPath (row: 1, section: 0)
-                var count = 0;
-                for c in cities{
-                    if c.name.uppercased() == city.name.uppercased(){
-                        cities.remove(at: count)
-                        break
-                    }
-                    count += 1
+                if cities[0].temp == 1 {
+                    city.temp = 1;
                 }
                 
-                let firstCity = cities[0]
-                cities[0] = city
-                cities.append(firstCity)
-                tableView.reloadData()
-                saveCities()
+                if cities[0].name.uppercased() != city.name.uppercased(){
+                    //                let newIndexPath = IndexPath (row: 1, section: 0)
+                    var count = 0;
+                    for c in cities{
+                        if c.name.uppercased() == city.name.uppercased(){
+                            cities.remove(at: count)
+                            break
+                        }
+                        count += 1
+                    }
+                    
+                    let firstCity = cities[0]
+                    cities[0] = city
+                    cities.append(firstCity)
+                    
             }
+            }else{
+                cities.append(city)
+            }
+            tableView.reloadData()
+            saveCities()
             
         }
     }
@@ -264,10 +271,12 @@ class CityTableViewController: UITableViewController{
             }
             
             let city = cities[indexPath.row]
+            //cityDetailController.tempPassed = city.temp
+            //cityDetailController.unitPassed = isCels
             cityDetailController.namePassed = city.name
             cityDetailController.doubleLatPassed = city.lat
             cityDetailController.doubleLonPassed = city.lon
-
+            
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
@@ -282,7 +291,7 @@ extension CityTableViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        let degree = cities[0].temp
+
         var isDuplicate: Bool = false
         
         for c in cities {
@@ -291,18 +300,24 @@ extension CityTableViewController: GMSAutocompleteViewControllerDelegate {
                 break
             }
         }
+        let newIndexPath = IndexPath (row: cities.count, section: 0)
+        var city : CityList?
         
-        if isDuplicate == false{
+        if isDuplicate == false && cities.count > 0{
             
-            let newIndexPath = IndexPath (row: cities.count, section: 0)
-            var city : CityList?
+            let degree = cities[0].temp
             city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude, temp: degree)
             
-            cities.append(city!)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }else{
+
+            city = CityList(name: place.name, lat: place.coordinate.latitude, lon: place.coordinate.longitude, temp: 0)
             
-            saveCities()
         }
+        
+        cities.append(city!)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+        
+        saveCities()
         
         
         dismiss(animated: true, completion: nil)

@@ -26,4 +26,6 @@ struct ForecastOpenWeatherMap: Decodable {
     func getCoordinate() -> Coord {
         return city.coord
     }
+    
+    
 }
