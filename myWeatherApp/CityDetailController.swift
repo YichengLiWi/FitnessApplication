@@ -12,12 +12,15 @@ class CityDetailController: UIViewController {
     
     var stringPassed:String = ""
     @IBOutlet weak var firstLabel: UILabel!
-    
+    var coord:Coord!
+    var city:City!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         firstLabel.text = stringPassed
         
+        city = City(coord: coord)
+        city.getForecast()
     }
     
     override func didReceiveMemoryWarning() {
