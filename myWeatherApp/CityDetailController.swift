@@ -17,7 +17,8 @@ class CityDetailController: UIViewController, UITableViewDataSource, UITableView
     var tempPassed:Int=0
     var hourlyArrayDisplay: [(time_h: String, weather_h: String, temp_h:Int)] = []
     var unitPassed = false
-    
+    var currentTempMax: Int = -100
+    var currentTempMin: Int = 200
     @IBOutlet weak var dayOneUILabel: UILabel!
     @IBOutlet weak var dayTwoUILabel: UILabel!
     @IBOutlet weak var dayThreeUILabel: UILabel!
@@ -55,7 +56,6 @@ class CityDetailController: UIViewController, UITableViewDataSource, UITableView
         currentTempLabel.text = "\(city!.currentTemp())" + degree
         
         dateLabel.text = city!.currentDate()
-        maxTempLabel.text = "\(city!.maxTemp())" + degree + " / " + "\(city!.minTemp())" + degree
         //self.hourlyTableView.register(UITableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: "HourlyTableViewCell")
         //need date, weather at noon, max,min temp
         let dailyDisplay = city!.getDaily()
@@ -168,15 +168,29 @@ class CityDetailController: UIViewController, UITableViewDataSource, UITableView
         hourlyTableView.allowsSelection = false
         loadHourlyData()
         
+        maxTempLabel.text = "\(currentTempMax)" + degree + " / " + "\(currentTempMin)" + degree
+        
     }
     
     func loadHourlyData() {
         let hourlyArray = city!.getHourly()
         hourlyArrayDisplay.append( (time_h: "Now", weather_h: (city!.openWeather?.weather[0].main)!, temp_h: city!.currentTemp()))
+        if city!.currentTemp() > currentTempMax {
+            currentTempMax = city!.currentTemp()
+        }
+        if city!.currentTemp() < currentTempMin {
+            currentTempMin = city!.currentTemp()
+        }
         for i in 0...hourlyArray.count-1 {
             //time, weather status, temp
             let (time, weather, temp) = city!.getHoulyIndex(index: i)
             hourlyArrayDisplay.append( (time_h: time, weather_h: weather, temp_h: temp))
+            if temp > currentTempMax {
+                currentTempMax = temp
+            }
+            if temp < currentTempMin {
+                currentTempMin = temp
+            }
         }
         
         hourlyTableView.reloadData()
