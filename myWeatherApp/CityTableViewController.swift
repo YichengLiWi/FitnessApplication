@@ -237,15 +237,41 @@ class CityTableViewController: UITableViewController {
      }
      */
     
-    /*
+
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? ""){
+        case "AddCurrent":
+            os_log("Adding Current City.", log: OSLog.default, type: .debug)
+            
+        case "ShowDetail":
+            guard let cityDetailController = segue.destination as? CityDetailController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedCityCell = sender as? CityTableViewCell else {
+                fatalError("Unexpected destination: \(sender)")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedCityCell)else{
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedCity = cities[indexPath.row]
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            
+        }
+        
      }
-     */
+
     
 }
 extension CityTableViewController: GMSAutocompleteViewControllerDelegate {
