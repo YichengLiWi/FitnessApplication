@@ -10,9 +10,6 @@ import UIKit
 
 class CityDetailController: UIViewController {
     
-    let cities:[String] = ["San Jose", "San Francisco", "New York", "Los Angeles"]
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
