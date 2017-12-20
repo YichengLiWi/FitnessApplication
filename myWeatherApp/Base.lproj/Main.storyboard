@@ -131,62 +131,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1td-xv-xkH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="a0K-sx-t1g">
-                                    <size key="itemSize" width="371" height="649"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="city_cell" id="aHF-6X-4Nt" customClass="myCity" customModule="myWeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="2" y="0.0" width="371" height="649"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="371" height="649"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </view>
-                                        <connections>
-                                            <outlet property="city_name" destination="dBK-7P-JPC" id="e00-Cw-VCV"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="Ab0-cP-bx6" id="DaS-gU-oKq"/>
-                                    <outlet property="delegate" destination="Ab0-cP-bx6" id="EUn-Fy-Un6"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="1td-xv-xkH" secondAttribute="trailing" id="HKk-ed-h4I"/>
-                            <constraint firstItem="1td-xv-xkH" firstAttribute="top" secondItem="ygA-6J-Ueh" secondAttribute="top" id="bvP-qT-2gx"/>
-                            <constraint firstItem="1td-xv-xkH" firstAttribute="leading" secondItem="ygA-6J-Ueh" secondAttribute="leading" id="kEW-Jv-hAh"/>
-                            <constraint firstAttribute="bottom" secondItem="1td-xv-xkH" secondAttribute="bottom" id="yYe-Aw-8k1"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Trb-zb-QMv"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="City_Detail" id="3rb-ct-gn9"/>
-                    <connections>
-                        <outlet property="myCollectionView" destination="1td-xv-xkH" id="6h6-TT-6vh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xr2-of-ACU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1852" y="-1075.4122938530736"/>
-        </scene>
-        <!--City Detail Controller-->
-        <scene sceneID="xbk-hd-YrJ">
-            <objects>
-                <viewController id="YWB-6B-YKx" customClass="CityDetailController" customModule="myWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uaU-2h-rfT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K3c-h1-esS">
-                                <rect key="frame" x="16" y="20" width="343" height="627"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-xR-Pch">
+                                <rect key="frame" x="16" y="64" width="343" height="559"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBK-7P-JPC">
@@ -245,12 +191,13 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="zQw-TX-he5"/>
+                        <viewLayoutGuide key="safeArea" id="Trb-zb-QMv"/>
                     </view>
+                    <navigationItem key="navigationItem" title="City_Detail" id="3rb-ct-gn9"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jCq-4m-y1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xr2-of-ACU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2724" y="-1206.7466266866568"/>
+            <point key="canvasLocation" x="1852" y="-1075.4122938530736"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gCf-iC-Beo">
